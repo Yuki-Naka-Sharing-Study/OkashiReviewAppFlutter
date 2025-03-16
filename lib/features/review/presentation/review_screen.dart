@@ -56,6 +56,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 const Text("お菓子の種類"),
               ],
             ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Text("評価"),
+              ],
+            ),
           ],
         ),
       ),
