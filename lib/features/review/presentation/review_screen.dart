@@ -33,6 +33,22 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Text("お菓子のお店"),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: TextField(
+                    controller: _controller,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'テキストを入力',
+                    ),
+                  ),
+                ),
+              ],
             )
           ],
         ),
