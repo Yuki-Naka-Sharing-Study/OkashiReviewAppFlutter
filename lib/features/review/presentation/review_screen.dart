@@ -62,6 +62,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 const Text("評価"),
               ],
             ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Text("メモ"),
+              ],
+            ),
           ],
         ),
       ),
