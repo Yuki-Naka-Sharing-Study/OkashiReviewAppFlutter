@@ -49,7 +49,13 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Text("お菓子の種類"),
+              ],
+            ),
           ],
         ),
       ),
