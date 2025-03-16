@@ -46,9 +46,3 @@ class _BottomNavBarState extends State<BottomNavBar> {
     );
   }
 }
-
-void main() {
-  runApp(MaterialApp(
-    home: BottomNavBar(),
-  ));
-}
