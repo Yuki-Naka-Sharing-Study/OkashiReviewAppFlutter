@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ReviewScreen extends StatefulWidget {
   @override
@@ -60,6 +61,17 @@ class _ReviewScreenState extends State<ReviewScreen> {
             Row(
               children: [
                 const Text("評価"),
+                const SizedBox(width: 8),
+                RatingBar.builder(
+                  itemBuilder: (context, index) => const Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                  ),
+                  onRatingUpdate: (rating) {
+                    //評価が更新されたときの処理を書く
+                  },
+                  allowHalfRating: true,
+                ),
               ],
             ),
             const SizedBox(height: 8),
