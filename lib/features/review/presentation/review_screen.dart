@@ -76,8 +76,21 @@ class _ReviewScreenState extends State<ReviewScreen> {
             ),
             const SizedBox(height: 8),
             Row(
+                  children: [
+                    const Text("メモ"),
+                  ],
+            ),
+            const SizedBox(height: 8),
+            Row(
               children: [
-                const Text("メモ"),
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(30),
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
