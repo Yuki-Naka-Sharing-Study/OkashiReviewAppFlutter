@@ -93,6 +93,22 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 ),
               ],
             ),
+            const SizedBox(height: 8),
+            Center(
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blue,
+                      elevation: 16,
+                    ),
+                    onPressed: () {},
+                    child: const Text('保存'),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
