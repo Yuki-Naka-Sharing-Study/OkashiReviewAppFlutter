@@ -64,9 +64,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
     );
 
     // ダイアログから選択された項目を更新
-    if (selected != null) {
-      selectedItems.value = selected;
-    }
+    selectedItems.value = selected;
   }
 
   @override
