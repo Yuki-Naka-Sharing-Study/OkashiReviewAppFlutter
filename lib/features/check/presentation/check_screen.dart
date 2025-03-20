@@ -9,12 +9,14 @@ class _CheckScreenState extends State<CheckScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: 0,
       length: 5,
       child: Scaffold(
         appBar: AppBar(
           title: Text("レビュー確認"),
           bottom: TabBar(
             isScrollable: true,
+            tabAlignment: TabAlignment.start,
             tabs: [
               Tab(text: "チョコ"),
               Tab(text: "キャラメル"),
