@@ -18,11 +18,11 @@ class _CheckScreenState extends State<CheckScreen> {
             isScrollable: true,
             tabAlignment: TabAlignment.start,
             tabs: [
-              Tab(text: "チョコ"),
-              Tab(text: "キャラメル"),
-              Tab(text: "抹茶"),
-              Tab(text: "フルーツ"),
-              Tab(text: "その他"),
+              _buildEqualWidthTab("チョコ"),
+              _buildEqualWidthTab("キャラメル"),
+              _buildEqualWidthTab("抹茶"),
+              _buildEqualWidthTab("フルーツ"),
+              _buildEqualWidthTab("その他"),
             ],
           ),
         ),
@@ -78,4 +78,11 @@ class _CheckScreenState extends State<CheckScreen> {
       ),
     );
   }
+}
+
+Widget _buildEqualWidthTab(String text) {
+  return SizedBox(
+    width: 75, // ここで幅を調整
+    child: Tab(text: text),
+  );
 }
