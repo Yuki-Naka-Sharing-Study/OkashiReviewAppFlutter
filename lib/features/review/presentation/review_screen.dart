@@ -10,7 +10,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
   final TextEditingController _controller = TextEditingController();
 
   // 選択された項目を格納するリスト
-  List<String> selectedItems = [];
+  ValueNotifier<List<String>> selectedItems = ValueNotifier<List<String>>([]);
 
   // ドロップダウンに表示する項目
   final List<String> items = [
@@ -31,17 +31,21 @@ class _ReviewScreenState extends State<ReviewScreen> {
           content: SingleChildScrollView(
             child: Column(
               children: items.map((item) {
-                return CheckboxListTile(
-                  title: Text(item),
-                  value: selectedItems.contains(item),
-                  onChanged: (bool? value) {
-                    setState(() {
-                      if (value == true) {
-                        selectedItems.add(item);
-                      } else {
-                        selectedItems.remove(item);
-                      }
-                    });
+                return ValueListenableBuilder<List<String>>(
+                  valueListenable: selectedItems,
+                  builder: (context, selected, child) {
+                    return CheckboxListTile(
+                      title: Text(item),
+                      value: selected.contains(item),
+                      onChanged: (bool? value) {
+                        if (value == true) {
+                          selectedItems.value.add(item);
+                        } else {
+                          selectedItems.value.remove(item);
+                        }
+                        selectedItems.notifyListeners(); // 状態を更新
+                      },
+                    );
                   },
                 );
               }).toList(),
@@ -50,7 +54,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(selectedItems);
+                Navigator.of(context).pop(selectedItems.value);
               },
               child: Text('OK'),
             ),
@@ -60,9 +64,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
     );
 
     // ダイアログから選択された項目を更新
-    setState(() {
-      selectedItems = selected;
-    });
+    if (selected != null) {
+      selectedItems.value = selected;
+    }
   }
 
   @override
@@ -134,7 +138,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                     color: Colors.yellow,
                   ),
                   onRatingUpdate: (rating) {
-                    //評価が更新されたときの処理を書く
+                    // 評価が更新されたときの処理を書く
                   },
                   allowHalfRating: true,
                 ),
@@ -174,7 +178,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
