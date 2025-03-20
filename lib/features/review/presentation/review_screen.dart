@@ -9,6 +9,62 @@ class ReviewScreen extends StatefulWidget {
 class _ReviewScreenState extends State<ReviewScreen> {
   final TextEditingController _controller = TextEditingController();
 
+  // 選択された項目を格納するリスト
+  List<String> selectedItems = [];
+
+  // ドロップダウンに表示する項目
+  final List<String> items = [
+    'チョコ',
+    'キャラメル',
+    '抹茶',
+    'フルーツ',
+    'その他',
+  ];
+
+  // ダイアログを表示して選択を受け取る
+  void _showMultiSelectDialog() async {
+    final List<String> selected = await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('選択してください'),
+          content: SingleChildScrollView(
+            child: Column(
+              children: items.map((item) {
+                return CheckboxListTile(
+                  title: Text(item),
+                  value: selectedItems.contains(item),
+                  onChanged: (bool? value) {
+                    setState(() {
+                      if (value == true) {
+                        selectedItems.add(item);
+                      } else {
+                        selectedItems.remove(item);
+                      }
+                    });
+                  },
+                );
+              }).toList(),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(selectedItems);
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+
+    // ダイアログから選択された項目を更新
+    setState(() {
+      selectedItems = selected;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,6 +111,16 @@ class _ReviewScreenState extends State<ReviewScreen> {
             Row(
               children: [
                 const Text("お菓子の種類"),
+                const SizedBox(width: 8),
+                ElevatedButton(
+                  onPressed: _showMultiSelectDialog,
+                  child: Text('お菓子の種類を選択'),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                )
               ],
             ),
             const SizedBox(height: 8),
@@ -76,9 +142,9 @@ class _ReviewScreenState extends State<ReviewScreen> {
             ),
             const SizedBox(height: 8),
             Row(
-                  children: [
-                    const Text("メモ"),
-                  ],
+              children: [
+                const Text("メモ"),
+              ],
             ),
             const SizedBox(height: 8),
             Row(
