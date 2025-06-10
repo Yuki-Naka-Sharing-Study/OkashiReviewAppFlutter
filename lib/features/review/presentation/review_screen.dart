@@ -97,7 +97,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: TextField(
-                    controller: _controller,
+                    controller: _nameController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'テキストを入力',
@@ -113,7 +113,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 const SizedBox(width: 8),
                 Expanded(
                   child: TextField(
-                    controller: _controller,
+                    controller: _shopController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'テキストを入力',
