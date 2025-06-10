@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'data/local/review_database.dart';
 
 class ReviewScreen extends StatefulWidget {
   @override
@@ -8,6 +9,12 @@ class ReviewScreen extends StatefulWidget {
 
 class _ReviewScreenState extends State<ReviewScreen> {
   final TextEditingController _controller = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _shopController = TextEditingController();
+  final TextEditingController _memoController = TextEditingController();
+  double _rating = 0.0;
+
+  late final ReviewDatabase _db;
 
   // 選択された項目を格納するリスト
   ValueNotifier<List<String>> selectedItems = ValueNotifier<List<String>>([]);
@@ -20,6 +27,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
     'フルーツ',
     'その他',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    _db = ReviewDatabase();
+  }
 
   // ダイアログを表示して選択を受け取る
   void _showMultiSelectDialog() async {
