@@ -184,7 +184,21 @@ class _ReviewScreenState extends State<ReviewScreen> {
                       backgroundColor: Colors.blue,
                       elevation: 16,
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      print('ボタンが押されました');
+                      _db.into(_db.reviews).insert(
+                          ReviewsCompanion.insert(
+                              name: _nameController.value.text,
+                              shop: _shopController.value.text,
+                              types: "チョコ", // 一旦チョコ
+                              rating: _rating
+                          )
+                      );
+                      final query = _db.select(_db.reviews);
+                      for (final row in await query.get()) {
+                      print(row.name);
+                      }
+                    },
                     child: const Text('保存'),
                   ),
                 ],

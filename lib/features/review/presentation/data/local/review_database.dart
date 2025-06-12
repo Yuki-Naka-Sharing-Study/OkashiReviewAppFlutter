@@ -23,6 +23,8 @@ class ReviewDatabase extends _$ReviewDatabase {
 
   @override
   int get schemaVersion => 1;
+
+
 }
 
 LazyDatabase _openConnection() {
